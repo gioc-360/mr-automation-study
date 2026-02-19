@@ -1,2 +1,2 @@
 # mr-automation-study
-automation study
+Market Research automation study
