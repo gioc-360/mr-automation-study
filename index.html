@@ -744,7 +744,7 @@ body {
       </div>
       <div class="context-cell">
         <div class="context-cell-label">Data Challenge</div>
-        <div class="context-cell-value">Unstructured multilingual survey responses (14 languages), SPSS legacy formats, nested Excel crosstabs</div>
+        <div class="context-cell-value">Unstructured multilingual survey responses ( languages), SPSS legacy formats, nested Excel crosstabs</div>
       </div>
       <div class="context-cell">
         <div class="context-cell-label">Role</div>
@@ -759,8 +759,8 @@ body {
   <div class="section-inner">
     <div class="reveal">
       <div class="section-num">02</div>
-      <h2 class="section-heading parallax-text">System 1: A Multilingual NLP Engine Automated Qualitative Coding Across 14 Languages</h2>
-      <p class="section-body">The first system automated the most labor-intensive step in the pipeline: reading, categorizing, and coding thousands of open-ended survey responses per wave. The system ingests raw SPSS data, sanitizes responses in 14 languages, performs fuzzy string matching against standardized codeframes, enriches unresolved titles via the TMDB API, and outputs formatted, client-ready Excel deliverables.</p>
+      <h2 class="section-heading parallax-text">System 1: A Multilingual NLP Engine Automated Qualitative Coding Across  Languages</h2>
+      <p class="section-body">The first system automated the most labor-intensive step in the pipeline: reading, categorizing, and coding thousands of open-ended survey responses per wave. The system ingests raw SPSS data, sanitizes responses in 15 languages, performs fuzzy string matching against standardized codeframes, enriches unresolved titles via the TMDB API, and outputs formatted, client-ready Excel deliverables.</p>
     </div>
 
     <div class="pipeline">
@@ -775,10 +775,10 @@ body {
       <div class="pipeline-row" data-delay="100">
         <div class="pipeline-stage"><span>Sanitize</span></div>
         <div class="pipeline-content">
-          <div class="pipeline-title">14-Language Non-Answer Filtering</div>
-          <div class="pipeline-desc">Built 14 country-specific non-answer dictionaries by hand, one per market. Handled Unicode normalization, vowel detection for Latin scripts, and special-case logic for Japanese characters (katakana, hiragana, kanji). No off-the-shelf NLP library covered this; each market's junk responses had to be cataloged and filtered individually.</div>
+          <div class="pipeline-title">15-Language Non-Answer Filtering</div>
+          <div class="pipeline-desc">Built 15 country-specific non-answer dictionaries by hand, one per market. Handled Unicode normalization, vowel detection for Latin scripts, and special-case logic for Japanese characters (katakana, hiragana, kanji). No off-the-shelf NLP library covered this; each market's junk responses had to be cataloged and filtered individually.</div>
         </div>
-        <div class="pipeline-tech"><span>unicodedata, regex, 14 custom dictionaries</span></div>
+        <div class="pipeline-tech"><span>unicodedata, regex, 15 custom dictionaries</span></div>
       </div>
       <div class="pipeline-row" data-delay="200">
         <div class="pipeline-stage"><span>Match</span></div>
@@ -835,7 +835,7 @@ body {
 
     <!-- Language coverage -->
     <div class="reveal">
-      <p class="section-body" style="margin-top: 0;">The system supported all 14 client markets, each with its own non-answer dictionary, Unicode handling, and API search configuration:</p>
+      <p class="section-body" style="margin-top: 0;">The system supported all 15 client markets, each with its own non-answer dictionary, Unicode handling, and API search configuration:</p>
       <div class="lang-row">
         <span class="lang-tag">🇺🇸 English (US)</span>
         <span class="lang-tag">🇬🇧 English (UK)</span>
@@ -845,6 +845,7 @@ body {
         <span class="lang-tag">🇩🇪 German</span>
         <span class="lang-tag">🇮🇹 Italian</span>
         <span class="lang-tag">🇪🇸 Spanish</span>
+        <span class="lang-tag">🇰🇷 Korean</span>
         <span class="lang-tag">🇲🇽 Spanish (MX)</span>
         <span class="lang-tag">🇧🇷 Portuguese (BR)</span>
         <span class="lang-tag">🇯🇵 Japanese</span>
@@ -990,7 +991,7 @@ body {
       <div class="stack-cell"><div class="stack-cell-label">Concurrency</div><div class="stack-cell-value">ThreadPoolExecutor</div></div>
       <div class="stack-cell"><div class="stack-cell-label">Excel Automation</div><div class="stack-cell-value">openpyxl (styles, formulas)</div></div>
       <div class="stack-cell"><div class="stack-cell-label">UX</div><div class="stack-cell-value">tqdm, custom ProgressSpinner</div></div>
-      <div class="stack-cell"><div class="stack-cell-label">Unicode / i18n</div><div class="stack-cell-value">unicodedata, 14 locales</div></div>
+      <div class="stack-cell"><div class="stack-cell-label">Unicode / i18n</div><div class="stack-cell-value">unicodedata, 15 locales</div></div>
       <div class="stack-cell"><div class="stack-cell-label">AI Tooling</div><div class="stack-cell-value">GPT-4 (pair programming)</div></div>
     </div>
   </div>
