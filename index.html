@@ -15,28 +15,27 @@
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
 
 :root {
-  --bg: #fafaf8;
-  --bg-dark: #0a0a0a;
-  --surface: #ffffff;
-  --surface-dark: #141414;
-  --border: #e8e6e1;
-  --border-dark: #2a2a2a;
-  --text: #1a1a1a;
-  --text-inv: #f0efeb;
-  --text-secondary: #555550;
-  --text-secondary-inv: #999990;
-  --text-tertiary: #8a8880;
-  --accent: #1a3a5c;
-  --metric-blue: #4a8cc7;
-  --metric-green: #3a9b5c;
-  --metric-orange: #c9823a;
-  --metric-purple: #8a6aac;
+  --bg: #0a0a0a;
+  --bg-elevated: #0f0f0f;
+  --surface: #141414;
+  --surface-raised: #1a1a1a;
+  --border: #1e1e1e;
+  --border-accent: #2a2a2a;
+  --rule: #1a1a1a;
+  --text: #e8e6e1;
+  --text-secondary: #999990;
+  --text-tertiary: #666660;
+  --accent: #4a8cc7;
+  --metric-blue: #5a9cd7;
+  --metric-green: #4aab6c;
+  --metric-orange: #d9924a;
+  --metric-purple: #9a7abc;
 }
 
-html { scroll-behavior: auto; }
+html { scroll-behavior: smooth; }
 
 body {
-  background: var(--bg-dark);
+  background: var(--bg);
   color: var(--text);
   font-family: 'DM Sans', -apple-system, sans-serif;
   font-size: 16px;
@@ -58,9 +57,10 @@ body {
 }
 
 .nav.scrolled {
-  background: rgba(10,10,10,0.85);
+  background: rgba(10,10,10,0.9);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--border);
 }
 
 .nav-name {
@@ -68,7 +68,7 @@ body {
   font-size: 0.8rem;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: var(--text-inv);
+  color: var(--text);
 }
 
 .nav-links {
@@ -78,12 +78,12 @@ body {
 }
 
 .nav-links a {
-  color: var(--text-secondary-inv);
+  color: var(--text-secondary);
   text-decoration: none;
   transition: color 0.2s;
 }
 
-.nav-links a:hover { color: var(--text-inv); }
+.nav-links a:hover { color: var(--text); }
 
 /* ===== HERO: FULL VIEWPORT ===== */
 .hero {
@@ -94,7 +94,7 @@ body {
   align-items: center;
   text-align: center;
   padding: 6rem 2rem 4rem;
-  background: var(--bg-dark);
+  background: var(--bg);
   position: relative;
   overflow: hidden;
 }
@@ -104,7 +104,7 @@ body {
   position: absolute;
   top: -50%; left: -50%;
   width: 200%; height: 200%;
-  background: radial-gradient(ellipse at 50% 50%, rgba(26,58,92,0.12) 0%, transparent 60%);
+  background: radial-gradient(ellipse at 50% 50%, rgba(26,58,92,0.1) 0%, transparent 60%);
   pointer-events: none;
 }
 
@@ -114,7 +114,7 @@ body {
   font-weight: 500;
   letter-spacing: 0.15em;
   text-transform: uppercase;
-  color: var(--text-secondary-inv);
+  color: var(--text-secondary);
   margin-bottom: 2rem;
   opacity: 0;
   transform: translateY(20px);
@@ -126,7 +126,7 @@ body {
   font-size: clamp(2.2rem, 5.5vw, 4rem);
   font-weight: 700;
   line-height: 1.1;
-  color: var(--text-inv);
+  color: var(--text);
   max-width: 900px;
   margin-bottom: 1.75rem;
   opacity: 0;
@@ -136,7 +136,7 @@ body {
 
 .hero-lede {
   font-size: 1.1rem;
-  color: var(--text-secondary-inv);
+  color: var(--text-secondary);
   max-width: 640px;
   line-height: 1.75;
   opacity: 0;
@@ -187,7 +187,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: var(--bg-dark);
+  background: var(--bg);
   padding: 4rem 2rem;
   position: relative;
 }
@@ -219,7 +219,7 @@ body {
   position: absolute;
   right: 0; top: 20%; bottom: 20%;
   width: 1px;
-  background: var(--border-dark);
+  background: var(--border-accent);
 }
 
 .metric-card:last-child::after { display: none; }
@@ -243,21 +243,23 @@ body {
   font-weight: 400;
   letter-spacing: 0.05em;
   text-transform: uppercase;
-  color: var(--text-secondary-inv);
+  color: var(--text-secondary);
   line-height: 1.5;
 }
 
-/* ===== LIGHT SECTIONS ===== */
-.section-light {
+/* ===== SECTIONS (unified dark) ===== */
+.section {
   background: var(--bg);
   padding: 8rem 2rem;
   position: relative;
 }
 
-.section-dark {
-  background: var(--bg-dark);
-  padding: 8rem 2rem;
-  position: relative;
+.section--elevated {
+  background: var(--bg-elevated);
+}
+
+.section + .section {
+  border-top: 1px solid var(--rule);
 }
 
 .section-inner {
@@ -271,11 +273,9 @@ body {
   font-weight: 500;
   letter-spacing: 0.2em;
   text-transform: uppercase;
+  color: var(--text-tertiary);
   margin-bottom: 0.75rem;
 }
-
-.section-light .section-num { color: var(--text-tertiary); }
-.section-dark .section-num { color: var(--text-secondary-inv); }
 
 .section-heading {
   font-family: 'Source Serif 4', serif;
@@ -284,20 +284,16 @@ body {
   line-height: 1.2;
   margin-bottom: 1.25rem;
   max-width: 700px;
+  color: var(--text);
 }
-
-.section-light .section-heading { color: var(--text); }
-.section-dark .section-heading { color: var(--text-inv); }
 
 .section-body {
   font-size: 1rem;
   line-height: 1.75;
   max-width: 640px;
   margin-bottom: 2.5rem;
+  color: var(--text-secondary);
 }
-
-.section-light .section-body { color: var(--text-secondary); }
-.section-dark .section-body { color: var(--text-secondary-inv); }
 
 /* ===== CONTEXT GRID ===== */
 .context-grid {
@@ -325,7 +321,7 @@ body {
 
 .context-cell-value {
   font-size: 0.92rem;
-  color: var(--text);
+  color: var(--text-secondary);
   line-height: 1.6;
 }
 
@@ -334,13 +330,13 @@ body {
   display: flex;
   flex-direction: column;
   gap: 0;
-  border: 1px solid var(--border-dark);
+  border: 1px solid var(--border-accent);
 }
 
 .pipeline-row {
   display: grid;
   grid-template-columns: 100px 1fr 200px;
-  border-bottom: 1px solid var(--border-dark);
+  border-bottom: 1px solid var(--border-accent);
   opacity: 0;
   transform: translateX(-30px);
   transition: opacity 0.5s ease, transform 0.5s ease;
@@ -357,7 +353,7 @@ body {
   padding: 1.5rem 1.25rem;
   display: flex;
   align-items: flex-start;
-  border-right: 1px solid var(--border-dark);
+  border-right: 1px solid var(--border-accent);
 }
 
 .pipeline-stage span {
@@ -376,13 +372,13 @@ body {
 .pipeline-title {
   font-weight: 600;
   font-size: 0.95rem;
-  color: var(--text-inv);
+  color: var(--text);
   margin-bottom: 0.35rem;
 }
 
 .pipeline-desc {
   font-size: 0.85rem;
-  color: var(--text-secondary-inv);
+  color: var(--text-secondary);
   line-height: 1.6;
 }
 
@@ -390,7 +386,7 @@ body {
   padding: 1.5rem 1.25rem;
   display: flex;
   align-items: flex-start;
-  border-left: 1px solid var(--border-dark);
+  border-left: 1px solid var(--border-accent);
 }
 
 .pipeline-tech span {
@@ -402,8 +398,8 @@ body {
 
 /* ===== CODE BLOCK ===== */
 .code-block {
-  background: #111118;
-  border: 1px solid #1e1e2e;
+  background: #08080e;
+  border: 1px solid var(--border);
   overflow: hidden;
   margin: 2.5rem 0;
   opacity: 0;
@@ -421,8 +417,8 @@ body {
   align-items: center;
   gap: 0.5rem;
   padding: 0.75rem 1.25rem;
-  background: #0a0a12;
-  border-bottom: 1px solid #1e1e2e;
+  background: #060610;
+  border-bottom: 1px solid var(--border);
 }
 
 .code-dot { width: 8px; height: 8px; border-radius: 50%; }
@@ -464,9 +460,9 @@ body {
   font-family: 'IBM Plex Mono', monospace;
   font-size: 0.65rem;
   padding: 0.35rem 0.7rem;
-  border: 1px solid var(--border-dark);
-  color: var(--text-secondary-inv);
-  background: var(--surface-dark);
+  border: 1px solid var(--border-accent);
+  color: var(--text-secondary);
+  background: var(--surface);
   transition: border-color 0.3s;
 }
 
@@ -515,6 +511,7 @@ body {
   background: var(--bg);
   padding: 0.1rem 0.35rem;
   border: 1px solid var(--border);
+  color: var(--metric-blue);
 }
 
 .sys2-cell-tech {
@@ -541,7 +538,7 @@ body {
   text-align: left;
   padding: 0.85rem 1.25rem;
   background: var(--surface);
-  border-bottom: 2px solid var(--border);
+  border-bottom: 2px solid var(--border-accent);
 }
 
 .results-table td {
@@ -562,7 +559,7 @@ body {
 
 .results-bar-track {
   height: 6px;
-  background: var(--bg);
+  background: var(--surface);
   border: 1px solid var(--border);
   position: relative;
   overflow: hidden;
@@ -616,23 +613,23 @@ body {
 
 /* ===== FOOTER ===== */
 .footer {
-  background: var(--bg-dark);
+  background: var(--bg);
   padding: 3rem 2.5rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
   font-size: 0.75rem;
   color: var(--text-tertiary);
-  border-top: 1px solid var(--border-dark);
+  border-top: 1px solid var(--border);
 }
 
 .footer a {
-  color: var(--text-secondary-inv);
+  color: var(--text-secondary);
   text-decoration: none;
   transition: color 0.2s;
 }
 
-.footer a:hover { color: var(--text-inv); }
+.footer a:hover { color: var(--text); }
 
 /* ===== SCROLL REVEAL ===== */
 .reveal {
@@ -652,11 +649,6 @@ body {
   will-change: transform;
 }
 
-/* ===== SECTION TRANSITIONS ===== */
-.section-light, .section-dark {
-  clip-path: inset(0);
-}
-
 /* ===== RESPONSIVE ===== */
 @media (max-width: 768px) {
   .metrics-grid { grid-template-columns: repeat(2, 1fr); }
@@ -664,20 +656,20 @@ body {
   .context-grid { grid-template-columns: 1fr; }
   .sys2-grid { grid-template-columns: 1fr; }
   .pipeline-row { grid-template-columns: 1fr; }
-  .pipeline-stage { border-right: none; border-bottom: 1px solid var(--border-dark); }
-  .pipeline-tech { border-left: none; border-top: 1px solid var(--border-dark); }
+  .pipeline-stage { border-right: none; border-bottom: 1px solid var(--border-accent); }
+  .pipeline-tech { border-left: none; border-top: 1px solid var(--border-accent); }
   .results-bar-cell { display: none; }
   .nav { padding: 1rem 1.5rem; }
   .hero { padding: 5rem 1.5rem 3rem; }
-  .section-light, .section-dark { padding: 5rem 1.5rem; }
+  .section { padding: 5rem 1.5rem; }
 }
 
 @media print {
   body { background: #fff; color: #000; }
   .nav, .hero-scroll-cue { display: none; }
-  .section-dark { background: #fff; }
-  .section-dark .section-heading, .section-dark .section-num,
-  .section-dark .section-body, .pipeline-title, .pipeline-desc { color: #000 !important; }
+  .section { background: #fff; }
+  .section-heading, .section-num, .section-body,
+  .pipeline-title, .pipeline-desc { color: #000 !important; }
 }
 </style>
 </head>
@@ -725,22 +717,22 @@ body {
 </section>
 
 <!-- 01: CONTEXT -->
-<section class="section-light">
+<section class="section section--elevated">
   <div class="section-inner">
     <div class="reveal">
-      <div class="section-num">01</div>
+      <div class="section-num">01 — The Problem</div>
       <h2 class="section-heading parallax-text">Late Deliverables and Manual Processes Threatened a Major Client Relationship</h2>
-      <p class="section-body">The firm provides market research and data science consulting for major entertainment studios and global brands. A Fortune 500 media conglomerate, one of the firm's largest clients, required survey data processed and delivered 15 international markets on tight release cycles. The existing process was entirely manual: analysts spent weeks copy-pasting data, running VLOOKUPs, and hand-categorizing thousands of open-ended survey responses one row at a time. Deliverables arrived late. The client relationship was deteriorating. No one had scoped a technical solution. I saw the bottleneck, pitched the fix, and built it.</p>
+      <p class="section-body">A Fortune 500 media conglomerate required survey data processed and delivered across 15 international markets on tight release cycles. The existing process was entirely manual: analysts spent weeks copy-pasting data, running VLOOKUPs, and hand-categorizing thousands of open-ended survey responses one row at a time. Deliverables arrived late. The client relationship was deteriorating. No one had scoped a technical solution because no one on the research team could code, and no one on the engineering team understood the data. I saw the gap, pitched the fix, and built it.</p>
     </div>
 
     <div class="context-grid reveal">
       <div class="context-cell">
         <div class="context-cell-label">Client</div>
-        <div class="context-cell-value">A Fortune 500 global media conglomerate (15 markets, recurring quarterly delivery)</div>
+        <div class="context-cell-value">Fortune 500 global media conglomerate, 15 markets, recurring quarterly delivery</div>
       </div>
       <div class="context-cell">
         <div class="context-cell-label">Problem</div>
-        <div class="context-cell-value">Manual data processing caused late deliverables, strained the client relationship, and limited scalability</div>
+        <div class="context-cell-value">Manual data processing caused late deliverables and strained the client relationship</div>
       </div>
       <div class="context-cell">
         <div class="context-cell-label">Data Challenge</div>
@@ -748,19 +740,19 @@ body {
       </div>
       <div class="context-cell">
         <div class="context-cell-label">Role</div>
-        <div class="context-cell-value">Self-directed. No one assigned this project. I identified the bottleneck, pitched the solution to leadership, wrote the code, and shipped the product</div>
+        <div class="context-cell-value">Self-directed: identified the bottleneck, pitched the solution, wrote the code, shipped to production</div>
       </div>
     </div>
   </div>
 </section>
 
 <!-- 02: SYSTEM 1 -->
-<section class="section-dark">
+<section class="section">
   <div class="section-inner">
     <div class="reveal">
-      <div class="section-num">02</div>
-      <h2 class="section-heading parallax-text">System 1: A Multilingual NLP Engine Automated Qualitative Coding Across 15 Languages</h2>
-      <p class="section-body">The first system automated the most labor-intensive step in the pipeline: reading, categorizing, and coding thousands of open-ended survey responses per wave. The system ingests raw SPSS data, sanitizes responses in 15 languages, performs fuzzy string matching against standardized codeframes, enriches unresolved titles via the TMDB API, and outputs formatted, client-ready Excel deliverables.</p>
+      <div class="section-num">02 — System 1</div>
+      <h2 class="section-heading parallax-text">A Multilingual NLP Engine Automated Qualitative Coding Across 15 Languages</h2>
+      <p class="section-body">The first system automated the most labor-intensive step: reading, categorizing, and coding thousands of open-ended survey responses per wave. It ingests raw SPSS data, sanitizes responses in 15 languages, performs fuzzy string matching against standardized codeframes, enriches unresolved titles via the TMDB API, and outputs formatted, client-ready Excel deliverables.</p>
     </div>
 
     <div class="pipeline">
@@ -776,7 +768,7 @@ body {
         <div class="pipeline-stage"><span>Sanitize</span></div>
         <div class="pipeline-content">
           <div class="pipeline-title">15-Language Non-Answer Filtering</div>
-          <div class="pipeline-desc">Built 15 country-specific non-answer dictionaries by hand, one per market. Handled Unicode normalization, vowel detection for Latin scripts, and special-case logic for Japanese characters (katakana, hiragana, kanji). No off-the-shelf NLP library covered this; each market's junk responses had to be cataloged and filtered individually.</div>
+          <div class="pipeline-desc">Built 15 country-specific non-answer dictionaries by hand. Handled Unicode normalization, vowel detection for Latin scripts, and special-case logic for Japanese characters (katakana, hiragana, kanji). No off-the-shelf NLP library covered this; each market's junk responses had to be cataloged and filtered individually.</div>
         </div>
         <div class="pipeline-tech"><span>unicodedata, regex, 15 custom dictionaries</span></div>
       </div>
@@ -784,7 +776,7 @@ body {
         <div class="pipeline-stage"><span>Match</span></div>
         <div class="pipeline-content">
           <div class="pipeline-title">Fuzzy NLP String Matching</div>
-          <div class="pipeline-desc">Scored messy human inputs against standardized codeframes using Levenshtein distance. Three-tier classification: Exact (100%), Similar (≥92%), and manual review. If a row failed or a title was unresolvable, the system logged it and kept processing. 95% automated now beat 100% automated next year. Supported persistent analyst overrides that carried across runs.</div>
+          <div class="pipeline-desc">Scored messy human inputs against standardized codeframes using Levenshtein distance. Three-tier classification: Exact (100%), Similar (≥92%), and manual review. Failed rows were logged and processing continued. 95% automated now beat 100% automated next year. Supported persistent analyst overrides across runs.</div>
         </div>
         <div class="pipeline-tech"><span>rapidfuzz, Levenshtein, token_set_ratio</span></div>
       </div>
@@ -792,7 +784,7 @@ body {
         <div class="pipeline-stage"><span>Enrich</span></div>
         <div class="pipeline-content">
           <div class="pipeline-title">TMDB API with Bilingual Fallback</div>
-          <div class="pipeline-desc">Instead of waiting for an enterprise master data system to categorize TV shows (which could take months of procurement), I wired the public TMDB API directly into the pipeline. The system queries in the respondent's native language first, falls back to English, pulls metadata (year, network, popularity, streaming provider), filters against an allowed brand list, and auto-matches results back to the codeframe.</div>
+          <div class="pipeline-desc">Instead of waiting months for an enterprise master data system, I wired the public TMDB API directly into the pipeline. The system queries in the respondent's native language first, falls back to English, pulls metadata (year, network, popularity, streaming provider), filters against an allowed brand list, and auto-matches results back to the codeframe.</div>
         </div>
         <div class="pipeline-tech"><span>TMDB REST API, requests, brand filtering</span></div>
       </div>
@@ -821,7 +813,8 @@ body {
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="str">'US'</span>: <span class="str">'en-US'</span>, <span class="str">'GB'</span>: <span class="str">'en-GB'</span>, <span class="str">'CA'</span>: <span class="str">'en-CA'</span>,<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="str">'IT'</span>: <span class="str">'it-IT'</span>, <span class="str">'FR'</span>: <span class="str">'fr-FR'</span>, <span class="str">'DE'</span>: <span class="str">'de-DE'</span>,<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="str">'JP'</span>: <span class="str">'ja-JP'</span>, <span class="str">'SE'</span>: <span class="str">'sv-SE'</span>, <span class="str">'NO'</span>: <span class="str">'no-NO'</span>,<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="str">'BR'</span>: <span class="str">'pt-BR'</span>, <span class="str">'DK'</span>: <span class="str">'da-DK'</span>, <span class="str">'MX'</span>: <span class="str">'es-MX'</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="str">'BR'</span>: <span class="str">'pt-BR'</span>, <span class="str">'DK'</span>: <span class="str">'da-DK'</span>, <span class="str">'MX'</span>: <span class="str">'es-MX'</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="str">'KR'</span>: <span class="str">'ko-KR'</span><br>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br>
 <br>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="cm"># Step 1: Native language search</span><br>
@@ -858,23 +851,23 @@ body {
 </section>
 
 <!-- 03: SYSTEM 2 -->
-<section class="section-light">
+<section class="section section--elevated">
   <div class="section-inner">
     <div class="reveal">
-      <div class="section-num">03</div>
-      <h2 class="section-heading parallax-text">System 2: A Concurrent Pipeline Reverse-Engineered Formatted Crosstabs into Queryable Databases</h2>
+      <div class="section-num">03 — System 2</div>
+      <h2 class="section-heading parallax-text">A Concurrent Pipeline Reverse-Engineered Formatted Crosstabs into Queryable Databases</h2>
       <p class="section-body">The second system solved the opposite problem: converting presentation-formatted Excel crosstabs back into queryable databases. These crosstabs were designed for human reading, not machine ingestion. Statistical significance was encoded as cell background colors, not as data fields. A peacetime approach would have filed a ticket with the data provider requesting clean JSON. I wrote a script to rip the hex values out of the cells instead.</p>
     </div>
 
     <div class="sys2-grid">
       <div class="sys2-cell">
         <div class="sys2-cell-title">Color-Based Data Extraction</div>
-        <div class="sys2-cell-body">Programmed openpyxl to physically read cell background hex values: <code>FFFF0000</code> for statistically down, <code>FF00FF00</code> for statistically up. Reverse-engineered visual formatting into structured data columns because the upstream provider had no API and no clean export. The data had to come from somewhere.</div>
+        <div class="sys2-cell-body">Programmed openpyxl to physically read cell background hex values: <code>FFFF0000</code> for statistically down, <code>FF00FF00</code> for statistically up. Reverse-engineered visual formatting into structured data columns because the upstream provider had no API and no clean export.</div>
         <span class="sys2-cell-tech">openpyxl · cell.fill.start_color.rgb</span>
       </div>
       <div class="sys2-cell">
         <div class="sys2-cell-title">Concurrent Multi-File Processing</div>
-        <div class="sys2-cell-body">Used ThreadPoolExecutor to brute-force parallel processing across multiple large crosstab files, with real-time progress tracking via tqdm. Quarter-end deadlines left no room for single-threaded sequential parsing. Reduced processing time proportionally to available cores.</div>
+        <div class="sys2-cell-body">Used ThreadPoolExecutor to brute-force parallel processing across multiple large crosstab files, with real-time progress tracking via tqdm. Quarter-end deadlines left no room for single-threaded sequential parsing.</div>
         <span class="sys2-cell-tech">concurrent.futures · ThreadPoolExecutor · tqdm</span>
       </div>
       <div class="sys2-cell">
@@ -887,19 +880,14 @@ body {
 </section>
 
 <!-- 04: RESULTS -->
-<section class="section-dark">
+<section class="section">
   <div class="section-inner">
     <div class="reveal">
-      <div class="section-num">04</div>
-      <h2 class="section-heading parallax-text">Both Systems Combined to Secure a $7M Three-Year Renewal and Support 35% Unit Revenue</h2>
-      <p class="section-body">The automation transformed the client from an at-risk account into the firm's most reliable delivery pipeline, replacing hundreds of analyst-hours per wave with scripts that ran in minutes. Work that previously required a team of junior analysts manually reading and categorizing responses now executed without human intervention. The solution was subsequently productized and adopted by a second Fortune 500 client, eliminating cross-industry manual tagging through standardized content detection.</p>
+      <div class="section-num">04 — Results</div>
+      <h2 class="section-heading parallax-text">Both Systems Secured a $7M Renewal, Then Were Productized for a Second Fortune 500 Client</h2>
+      <p class="section-body">The automation transformed an at-risk account into the firm's most reliable delivery pipeline. Work that previously required a team of junior analysts manually reading and categorizing responses now executed without human intervention. The solution was subsequently rebuilt into a reusable platform with standardized content detection and third-party API integrations, then adopted by a second Fortune 500 client for their research programs.</p>
     </div>
-  </div>
-</section>
 
-<!-- RESULTS TABLE (light) -->
-<section class="section-light" style="padding-top: 0;">
-  <div class="section-inner">
     <table class="results-table reveal">
       <thead>
         <tr>
@@ -911,7 +899,7 @@ body {
       <tbody>
         <tr>
           <td><span class="results-metric" style="color: var(--metric-blue);">99%</span></td>
-          <td>Tasks that took a team of analysts weeks (manually reading, categorizing, and formatting thousands of survey responses) now executed in minutes. Delivery cycles compressed by 79%, with reports landing 3 to 4 days before deadline.</td>
+          <td>Tasks that took analysts weeks now executed in minutes. Delivery cycles compressed by 79%, with reports landing 3 to 4 days before deadline.</td>
           <td class="results-bar-cell">
             <div class="results-bar-track">
               <div class="results-bar-fill" data-width="99%" style="background: var(--metric-blue);"></div>
@@ -920,7 +908,7 @@ body {
         </tr>
         <tr>
           <td><span class="results-metric" style="color: var(--metric-green);">$7M</span></td>
-          <td>Client three-year contract renewed. Client trust restored after repeated delivery failures. Achieved 100% on-time releases across all 15 markets for the remainder of the engagement.</td>
+          <td>Three-year contract renewed. Client trust restored. 100% on-time delivery across all 15 markets for the remainder of the engagement.</td>
           <td class="results-bar-cell">
             <div class="results-bar-track">
               <div class="results-bar-fill" data-width="85%" style="background: var(--metric-green);"></div>
@@ -929,7 +917,7 @@ body {
         </tr>
         <tr>
           <td><span class="results-metric" style="color: var(--metric-orange);">35%</span></td>
-          <td>Supported unit revenue by productizing the client solution into a reusable platform. A second Fortune 500 client adopted the system for their research programs.</td>
+          <td>Supported unit revenue by productizing the solution into a reusable platform adopted by a second Fortune 500 client.</td>
           <td class="results-bar-cell">
             <div class="results-bar-track">
               <div class="results-bar-fill" data-width="65%" style="background: var(--metric-orange);"></div>
@@ -941,45 +929,34 @@ body {
   </div>
 </section>
 
-<!-- 05: OPERATING MODEL -->
-<section class="section-dark">
+<!-- 05: OPERATING MODEL SHIFT -->
+<section class="section section--elevated">
   <div class="section-inner">
     <div class="reveal">
-      <div class="section-num">05</div>
-      <h2 class="section-heading parallax-text">The Real Win Was Not Automation. It Was Shifting the Team from Linear to Iterative Workflows</h2>
-      <p class="section-body">On the surface, this is an automation story: scripts replaced manual work and cut reporting time by 99%. The deeper win was an operating model shift. Before the automation, the firm ran a linear workflow. Every quarter started from zero: client specs came in, analysts began processing, and the team raced the clock sequentially. My systems made iterative workflows possible. Directors could negotiate specs with the client while analysts pre-wrote queries, updated codeframes, and staged quarter-over-quarter adjustments in parallel. By the time data dropped, 80% of the work was already loaded. Go time became execution, not discovery.</p>
+      <div class="section-num">05 — Operating Model Shift</div>
+      <h2 class="section-heading parallax-text">The Automation Moved the Team from Linear Execution to Iterative Preparation</h2>
+      <p class="section-body">Before the automation, every quarter started from zero. Client specs came in, analysts began processing, and the team raced the clock sequentially. The systems made a different operating model possible. Directors could negotiate specs with the client while analysts pre-wrote queries, updated codeframes, and staged quarter-over-quarter adjustments in parallel. By the time data dropped, 80% of the work was already loaded. Go time became execution, not discovery.</p>
     </div>
   </div>
 </section>
 
 <!-- 06: ERROR PHILOSOPHY -->
-<section class="section-light">
+<section class="section">
   <div class="section-inner">
     <div class="reveal">
-      <div class="section-num">06</div>
-      <h2 class="section-heading parallax-text">The Automation Inverted the Team's Error Philosophy: Large Visible Threats Over Small Hidden Ones</h2>
-      <p class="section-body">The old process optimized for preventing small mistakes at every step: hand-check every row, verify every categorization, move slowly. The result was dozens of small, invisible errors scattered across the pipeline, each one impossible to catch until it surfaced in a client deliverable. The automation inverted this. Run the full pipeline fast. Produce large, obvious mismatches (a whole market miscoded, a codeframe off by 500 rows) that are immediately visible in the output. Then fix them in the next iteration. Small errors hide. Large errors announce themselves. The team stopped tiptoeing through a minefield and started eliminating concentrated threats one at a time.</p>
+      <div class="section-num">06 — Error Philosophy</div>
+      <h2 class="section-heading parallax-text">The Automation Replaced Small Hidden Errors with Large Visible Ones</h2>
+      <p class="section-body">The old process optimized for preventing small mistakes at every step: hand-check every row, verify every categorization, move slowly. The result was dozens of small, invisible errors scattered across the pipeline, each impossible to catch until it surfaced in a client deliverable. The automation inverted this. Run the full pipeline fast. Produce large, obvious mismatches (a whole market miscoded, a codeframe off by 500 rows) that are immediately visible in the output. Then fix them in the next iteration. Small errors hide. Large errors announce themselves. The team stopped tiptoeing through a minefield and started eliminating concentrated threats one at a time.</p>
     </div>
   </div>
 </section>
 
-<!-- 07: PRODUCTIZATION -->
-<section class="section-dark">
+<!-- 07: TECH STACK -->
+<section class="section section--elevated">
   <div class="section-inner">
     <div class="reveal">
-      <div class="section-num">07</div>
-      <h2 class="section-heading parallax-text">The Solution Was Productized and Adopted by a Second Fortune 500 Client</h2>
-      <p class="section-body">The single-client solution was rebuilt into a reusable platform with standardized content detection and third-party API integrations. A second Fortune 500 client adopted the system for their research programs, validating the architecture's cross-industry applicability and supporting 35% unit revenue.</p>
-    </div>
-  </div>
-</section>
-
-<!-- 08: TECH STACK -->
-<section class="section-light">
-  <div class="section-inner">
-    <div class="reveal">
-      <div class="section-num">08</div>
-      <h2 class="section-heading">Technical Stack Spanned NLP, API Integration, Data Engineering, and UX</h2>
+      <div class="section-num">07 — Technical Stack</div>
+      <h2 class="section-heading">NLP, API Integration, Data Engineering, and UX</h2>
     </div>
 
     <div class="stack-grid">
@@ -1005,7 +982,6 @@ body {
 <script>
 // ===== NAV SCROLL BEHAVIOR =====
 const nav = document.getElementById('nav');
-let lastScroll = 0;
 window.addEventListener('scroll', () => {
   nav.classList.toggle('scrolled', window.scrollY > 80);
 }, { passive: true });
@@ -1016,7 +992,6 @@ const revealObserver = new IntersectionObserver((entries) => {
     if (entry.isIntersecting) {
       entry.target.classList.add('visible');
 
-      // Animate result bars
       const bars = entry.target.querySelectorAll('.results-bar-fill');
       bars.forEach((bar, i) => {
         setTimeout(() => { bar.style.width = bar.dataset.width; }, i * 200);
@@ -1073,7 +1048,7 @@ const metricObserver = new IntersectionObserver((entries) => {
 
 document.querySelectorAll('.metric-card').forEach(el => metricObserver.observe(el));
 
-// ===== PARALLAX TEXT =====
+// ===== PARALLAX TEXT (softened) =====
 const parallaxEls = document.querySelectorAll('.parallax-text');
 
 function updateParallax() {
@@ -1082,7 +1057,7 @@ function updateParallax() {
     const rect = el.getBoundingClientRect();
     const center = rect.top + rect.height / 2;
     const offset = (center - vh / 2) / vh;
-    el.style.transform = `translateY(${offset * -20}px)`;
+    el.style.transform = `translateY(${offset * -12}px)`;
   });
 }
 
